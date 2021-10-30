@@ -1,6 +1,8 @@
   .leagues{
-      display: flex;
-      flex-direction: row;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: -60px;
+    margin-left: 4px;
   }
 
   a {
@@ -12,6 +14,8 @@
   }
   
   .card {
+    flex: 1 0 1;
+    margin: 5px;
     display: inline-block;
     width: 270px;
     border-radius: 4px;
@@ -20,7 +24,8 @@
     background-color: #181818;
     transition: background-color 0.4s;
     cursor: pointer;
-    margin-bottom: 2rem;
+    min-height: 2.5em;
+   
   }
   .card:hover {
     background-color: #282828;
@@ -29,11 +34,12 @@
   .cover {
     position: relative;
     margin-bottom: 18px;
+    height: 19em;
   }
   .cover img {
-      align-items: center;
+    align-items: center;
     display: block;
-    width: 150px;
+    width: 250px;
     box-shadow: 0 8px 20px -4px hsl(0, 0%, 5%);
   }
   .cover.artist img {

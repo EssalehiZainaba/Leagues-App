@@ -1,0 +1,38 @@
+
+.page-item:hover{
+    cursor: pointer;
+    background-color: #282828;
+    
+}
+.nav {
+    top: 480px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 20px 5px;
+    max-width: 10000px;
+    width: 96%;
+ }
+
+.nav ul {
+   list-style: none;
+}
+.nav > ul {
+   display: table;
+   width: 100%;
+   background: #000;
+   position: relative;
+}
+.nav > ul li {
+    display: table-cell;
+}
+
+.nav > ul li a {
+    color: #fff;
+    display: block;
+    line-height: 10px;
+    padding: 20px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+ }

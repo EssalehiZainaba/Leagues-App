@@ -14,9 +14,9 @@ function App() {
   const [game, SetGame] = useState([]);
 
   const handleChange=(e) =>{
-    SetGame(JSON.parse(e.target.value))
+    SetGame(JSON.parse(e.target.value));
   }
-  
+
   return (
     <Router>
       <div className="App">

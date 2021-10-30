@@ -2,12 +2,17 @@ import { useContext, React, useState, useEffect } from 'react';
 import '../css/Leagues.css';
 import useFetch from '../api/useFetch';
 import { BrowserRouter as Route, Link } from "react-router-dom";
+import Pagination from './Pagination'
 import contextVal from '../Context';
 
 const Leagues = () => {
+
     const {data} = useFetch(process.env.REACT_APP_LEAGUES_API_URL)
     const [FilterData, setFilterData] = useState([])
     const SelectedGame = useContext(contextVal);
+    
+    const [currentPage, setCurrentPage] = useState(1);
+    const [LeaguesPerPage] = useState(4);
 
     const handleFilter=()=>{
         if(SelectedGame.id && data){
@@ -22,12 +27,18 @@ const Leagues = () => {
         handleFilter();
     }, [SelectedGame, data]);
 
+    const indexOfLastLeague = currentPage * LeaguesPerPage;
+    const indexOfFirstLeague = indexOfLastLeague - LeaguesPerPage;
+    const currentLeagues = FilterData? FilterData.slice(indexOfFirstLeague, indexOfLastLeague): console.log() ;
+
+    const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
     return (
         <div className="leagues">
-            {FilterData &&
-                FilterData.map(league =>
-                    (   <div className="card">                    
-                            <div className="cover" key={league.id}>
+            {currentLeagues &&
+                currentLeagues.map(league =>
+                    (  <div className="card" key={league.id}>                    
+                            <div className="cover artist">
                                 <img src={league.image_url} alt="cover"/>
                                 <div className="play-icon">
                                     <Link to={`/leagues/${league.id}`}>
@@ -36,12 +47,16 @@ const Leagues = () => {
                                 </div>
                             </div>
                             <div className="card-content">
-                                <p> {league.name} </p>
+                                <h4> {league.name} </h4>
                             </div>
-                        </div>                    
+                        </div>                 
                     )              
                 )
             }
+            {FilterData &&
+                <Pagination LeaguesPerPage={LeaguesPerPage} totalLeagues={FilterData.length} paginate={paginate} />
+            }
+                   
         </div>
     )
 }
