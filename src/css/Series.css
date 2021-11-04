@@ -1,0 +1,11 @@
+.card-series {
+    padding: 10px 150px; 
+    position: absolute;
+    left: 50%;
+    margin-top: -6%;
+    transform: translate(-50%);
+   
+  }
+  .card-series:hover {
+    background-color: #282828;
+  }

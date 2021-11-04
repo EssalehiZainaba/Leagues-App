@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Route, Link } from "react-router-dom";
+import '../css/Series.css';
 
 const Series = ( {series} ) => {
 
@@ -14,7 +15,7 @@ const Series = ( {series} ) => {
                             {item.winner_id &&
                                 <p>
                                     <Link to={`/teams/${item.winner_id}`}>                               
-                                        <span>Winner Team</span>                     
+                                        <span className="card-series">Winner Team</span>                     
                                     </Link>
                                 </p>
                             }

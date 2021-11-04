@@ -12,7 +12,7 @@ const Leagues = () => {
     const SelectedGame = useContext(contextVal);
     
     const [currentPage, setCurrentPage] = useState(1);
-    const [LeaguesPerPage] = useState(4);
+    const [LeaguesPerPage] = useState(5);
 
     const handleFilter=()=>{
         if(SelectedGame.id && data){
@@ -29,32 +29,34 @@ const Leagues = () => {
 
     const indexOfLastLeague = currentPage * LeaguesPerPage;
     const indexOfFirstLeague = indexOfLastLeague - LeaguesPerPage;
-    const currentLeagues = FilterData? FilterData.slice(indexOfFirstLeague, indexOfLastLeague): console.log() ;
+    const currentLeagues = FilterData? FilterData.slice(indexOfFirstLeague, indexOfLastLeague): "" ;
 
-    const paginate = (pageNumber) => setCurrentPage(pageNumber);
+    const paginate = pageNumber => setCurrentPage(pageNumber);
 
     return (
-        <div className="leagues">
+        <div className="items-div">
             {currentLeagues &&
                 currentLeagues.map(league =>
-                    (  <div className="card" key={league.id}>                    
-                            <div className="cover artist">
-                                <img src={league.image_url} alt="cover"/>
-                                <div className="play-icon">
-                                    <Link to={`/leagues/${league.id}`}>
-                                        <i className="fa fa-play"></i>                     
-                                    </Link>
+
+                    (
+                        <Link to={`/leagues/${league.id}`}>
+                            <div className="card" key={league.id}>                    
+                                <div className="cover artist">
+                                    <img src={league.image_url} alt="cover"/>
+                                    <div className="play-icon">                                   
+                                        <i className="fa fa-info-circle"></i>                                                        
+                                    </div>
+                                </div>
+                                <div className="card-content">
+                                    <h4> {league.name} </h4>
                                 </div>
                             </div>
-                            <div className="card-content">
-                                <h4> {league.name} </h4>
-                            </div>
-                        </div>                 
+                        </Link>
                     )              
                 )
             }
             {FilterData &&
-                <Pagination LeaguesPerPage={LeaguesPerPage} totalLeagues={FilterData.length} paginate={paginate} />
+                <Pagination itemsPerPage={LeaguesPerPage} totalItems={FilterData.length} paginate={paginate} color="primary"/>
             }
                    
         </div>

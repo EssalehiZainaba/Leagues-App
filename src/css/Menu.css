@@ -1,5 +1,4 @@
 select {
-
     margin-left: 100%;
     color: white;
     font-size: 16px;
@@ -10,7 +9,7 @@ select {
     -moz-appearance: none;
     appearance: none;
     border-color: transparent transparent transparent transparent;
-    background: url(https://stackoverflow.com/favicon.ico) 96% / 15% no-repeat black;
+    background: url(https://icon-library.com/images/league-of-legends-logo-icon/league-of-legends-logo-icon-24.jpg) 96% / 20% no-repeat black;
   }
 
 .Menu {

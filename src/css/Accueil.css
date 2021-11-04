@@ -1,0 +1,6 @@
+.accueil{
+    position: absolute;
+    left: 50%;
+    margin-top: -6%;
+    transform: translate(-50%);
+}

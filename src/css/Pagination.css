@@ -1,11 +1,10 @@
 
 .page-item:hover{
     cursor: pointer;
-    background-color: #282828;
-    
+    background-color: #282828;  
 }
 .nav {
-    top: 480px;
+    top: 900px;
     position: absolute;
     left: 0;
     right: 0;
@@ -35,4 +34,8 @@
     position: relative;
     text-align: center;
     text-decoration: none;
+ }
+
+ .div{
+     color: white;
  }

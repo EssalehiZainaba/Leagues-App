@@ -1,29 +1,26 @@
 import React from 'react';
-import '../css/Pagination.css'
+import "../css/Pagination.css"
 
-const Pagination = ({ LeaguesPerPage, totalLeagues, paginate }) => {
+const Pagination = ({ itemsPerPage, totalItems, paginate }) => {
+  const pageNumbers = [];
 
-    const pageNumbers = [];
+  for (let i = 1; i <= Math.ceil(totalItems / itemsPerPage); i++) {
+    pageNumbers.push(i);
+  }
 
-    for(let i=1; i<= Math.ceil(totalLeagues / LeaguesPerPage); i++){
-        pageNumbers.push(i);
-    }
+  return (
+    <nav className="nav">
+      <ul className='pagination'>
+        {pageNumbers.map(number => (
+          <li key={number} className="page-item">
+            <a onClick={() => paginate(number)} >
+              {number}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  );
+};
 
-    return (
-        <div className="Pagination" >
-            <div className="nav">
-                <ul>
-                    {pageNumbers.map(number =>(
-                        <li key={number} className="page-item">
-                            <a onClick={()=> paginate(number)} link='!#' className="page-link">
-                                {number}
-                            </a>
-                        </li>
-                    ))}
-            </ul>
-           </div>
-        </div>
-    )
-}
-
-export default Pagination
+export default Pagination;

@@ -1,4 +1,4 @@
-  .leagues{
+  .items-div{
     display: flex;
     flex-wrap: wrap;
     margin-top: -60px;
@@ -54,7 +54,7 @@
     height: 50px;
     border-radius: 50%;
     color: #fafafa;
-    background-color: #1db954;
+    background-color: #FFD700;
     box-shadow: 0 4px 16px -4px #121212;
     opacity: 0;
     transition: 0.4s, transform 0.1s;
@@ -67,12 +67,12 @@
     opacity: 1;
   }
   
-  .fa-play {
+  .fa-info-circle {
     position: absolute;
     transform: translate(-50%, -50%);
     left: 52%;
     top: 50%;
-    font-size: 1rem;
+    font-size: 4rem;
   }
   
   .card-content {

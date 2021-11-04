@@ -1,0 +1,27 @@
+
+.item-div{
+    position: absolute;
+    left: 50%;
+    margin-top: -6%;
+    transform: translate(-50%);
+
+}
+
+.card-item:hover {
+    background-color: #181818;
+}
+
+.card-item {
+    flex: 1 0 1;
+    margin: 5px;
+    display: inline-block;
+    width: 270px;
+    border-radius: 4px;
+    padding: 16px;
+    overflow: hidden;
+    background-color: #181818;
+    transition: background-color 0.4s;
+    cursor: pointer;
+    min-height: 2.5em;
+   
+  }

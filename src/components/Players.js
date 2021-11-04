@@ -7,9 +7,7 @@ const Players = ( {players} ) => {
                 players.map((item) =>
                     (
                         <div key={item.id}>
-                            {/* <p>Nationality : {item.nationality}</p> */}
-                            <p>Name : {item.name}</p>
-                            {/* <p>Slug : {item.slug}</p> */}
+                            <p>{item.name}</p>
                         </div>
                     )
                 )

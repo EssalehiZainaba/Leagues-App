@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Menu from "./components/Menu";
 import Accueil from "./components/Accueil";
 import Leagues from "./components/Leagues";
@@ -8,14 +8,24 @@ import Error  from "./components/Error";
 import Teams  from "./components/Teams";
 import Team  from "./components/Team";
 import contextVal from './Context';
+import './App.css';
 
 function App() {
 
   const [game, SetGame] = useState([]);
+  
 
   const handleChange=(e) =>{
     SetGame(JSON.parse(e.target.value));
+    localStorage.setItem("game", e.target.value)
   }
+
+  useEffect(() => {
+    if( localStorage.getItem("game")  ){
+      SetGame(JSON.parse(localStorage.getItem("game")))
+    }
+  }, [])
+
 
   return (
     <Router>

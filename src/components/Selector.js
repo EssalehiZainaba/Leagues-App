@@ -7,11 +7,11 @@ const Selector = ({handleChange}) => {
 
     return (
         <div className="custom-select">
-            <select onChange={handleChange}>
+            <select onChange={handleChange} value={ localStorage.getItem("game") ? localStorage.getItem("game") : [] }>
                 <option value="[]">All Games</option>
                 {data &&
                     data.map((item) =>
-                        (                         
+                        (   
                             <option key={item.id} value={JSON.stringify(item)}>{item.name}</option>
                         )
                     )
