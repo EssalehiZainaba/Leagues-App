@@ -3,7 +3,7 @@ import useFetch from '../api/useFetch';
 
 const Selector = ({handleChange}) => {
 
-    const {data} = useFetch("https://api.pandascore.co/videogames")
+    const {data} = useFetch(process.env.REACT_APP_GAMES_API_URL)
 
     return (
         <div className="custom-select">
