@@ -91,4 +91,35 @@
     font-size: 14px;
     color: hsl(0, 0%, 70%);
   }
+  .paginationBttns {
+    width: 80%;
+    height: 40px;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .paginationBttns a {
+    padding: 10px;
+    margin: 8px;
+    border-radius: 5px;
+    border: 1px solid #181818;
+    color: #181818;
+    cursor: pointer;
+  }
+  
+  .paginationBttns a:hover {
+    color: white;
+    background-color: #181818;
+  }
+  
+  .paginationActive a {
+    color: white;
+    background-color: #181818;
+  }
+  
+  .paginationDisabled a {
+    color: #282828;
+    background-color: #282828;
+  }
   

@@ -2,8 +2,8 @@ import { useContext, React, useState, useEffect } from 'react';
 import '../css/Leagues.css';
 import useFetch from '../api/useFetch';
 import { BrowserRouter as Route, Link } from "react-router-dom";
-import Pagination from './Pagination'
 import contextVal from '../Context';
+import ReactPaginate from 'react-paginate';
 
 const Leagues = () => {
 
@@ -11,8 +11,35 @@ const Leagues = () => {
     const [FilterData, setFilterData] = useState([])
     const SelectedGame = useContext(contextVal);
     
-    const [currentPage, setCurrentPage] = useState(1);
-    const [LeaguesPerPage] = useState(5);
+    const [pageNumber, setPageNumber] = useState(0);
+
+    const LeaguesPerPage = 5;
+    const pagesVisited = pageNumber * LeaguesPerPage;
+
+    const pageCount = FilterData? Math.ceil(FilterData.length / LeaguesPerPage) : "";
+
+    const changePage = ({selected}) => {
+        setPageNumber(selected)
+    }
+
+    const displayLeagues = FilterData? FilterData.slice(pagesVisited, pagesVisited + LeaguesPerPage).map((league) => {
+        return (
+            <Link to={`/leagues/${league.id}`}>
+                <div className="card" key={league.id}>                    
+                    <div className="cover artist">
+                        <img src={league.image_url} alt="cover"/>
+                        <div className="play-icon">                                   
+                            <i className="fa fa-info-circle"></i>                                                        
+                        </div>
+                    </div>
+                    <div className="card-content">
+                        <h4> {league.name} </h4>
+                    </div>
+                </div>
+            </Link>                 
+        );
+    }): "" ;
+
 
     const handleFilter=()=>{
         if(SelectedGame.id && data){
@@ -27,38 +54,22 @@ const Leagues = () => {
         handleFilter();
     }, [SelectedGame, data]);
 
-    const indexOfLastLeague = currentPage * LeaguesPerPage;
-    const indexOfFirstLeague = indexOfLastLeague - LeaguesPerPage;
-    const currentLeagues = FilterData? FilterData.slice(indexOfFirstLeague, indexOfLastLeague): "" ;
-
-    const paginate = pageNumber => setCurrentPage(pageNumber);
-
     return (
         <div className="items-div">
-            {currentLeagues &&
-                currentLeagues.map(league =>
-
-                    (
-                        <Link to={`/leagues/${league.id}`}>
-                            <div className="card" key={league.id}>                    
-                                <div className="cover artist">
-                                    <img src={league.image_url} alt="cover"/>
-                                    <div className="play-icon">                                   
-                                        <i className="fa fa-info-circle"></i>                                                        
-                                    </div>
-                                </div>
-                                <div className="card-content">
-                                    <h4> {league.name} </h4>
-                                </div>
-                            </div>
-                        </Link>
-                    )              
-                )
-            }
+            {displayLeagues}
             {FilterData &&
-                <Pagination itemsPerPage={LeaguesPerPage} totalItems={FilterData.length} paginate={paginate} color="primary"/>
-            }
-                   
+                <ReactPaginate previousLabel={"Previous"} 
+                               nextLabel={"next"} 
+                               pageCount={pageCount} 
+                               onPageChange={changePage}
+                               containerClassName={"paginationBttns"}
+                               previousLinkClassName={"previousBttn"}
+                               nextLinkClassName={"nextBttn"}
+                               disabledClassName={"paginationDisabled"}
+                               activeClassName={"paginationActive"}
+                               color="primary"
+                />
+            }                 
         </div>
     )
 }
